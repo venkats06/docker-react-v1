@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true venkats1/docker-react-v1 npm run test 
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app:  "docker-react-v1"
+  env:  "Dockerreactv1-env"
+  bucket_name:  "elasticbeanstalk-ap-south-1-158368706475"
+  bucket_path:  "docker-react-v1"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECERT_KEY"
